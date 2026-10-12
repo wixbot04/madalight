@@ -10,8 +10,9 @@ Les données viennent de l'API publique et gratuite
 (répertoire Sirene de l'INSEE et registre national des entreprises).
 Il n'y a ni inscription ni clé d'API.
 
-Une première liste de 42 prospects vérifiés à la main, avec leurs sources, est
-disponible dans [`listes/prospects-vanille-france.xlsx`](listes/prospects-vanille-france.xlsx).
+Une liste de 53 prospects vérifiés (France, Italie, Espagne, Brésil, Maurice,
+Afrique du Sud), avec volume estimé, coordonnées de l'entreprise et sources, est
+disponible dans [`listes/prospects-vanille.xlsx`](listes/prospects-vanille.xlsx).
 
 ## Installation
 

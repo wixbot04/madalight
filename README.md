@@ -10,6 +10,9 @@ Les données viennent de l'API publique et gratuite
 (répertoire Sirene de l'INSEE et registre national des entreprises).
 Il n'y a ni inscription ni clé d'API.
 
+Une première liste de 42 prospects vérifiés à la main, avec leurs sources, est
+disponible dans [`listes/prospects-vanille-france.xlsx`](listes/prospects-vanille-france.xlsx).
+
 ## Installation
 
 Il faut Python 3.10 ou plus récent. Aucune bibliothèque n'est à installer.

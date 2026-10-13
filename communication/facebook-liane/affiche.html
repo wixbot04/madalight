@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Madalight — Votre vanille commence ici</title>
+<style>
+  @font-face { font-family: "Cormorant"; font-weight: 500; src: url(assets/fonts/CormorantGaramond-500.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 600; src: url(assets/fonts/CormorantGaramond-600.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 500; font-style: italic; src: url(assets/fonts/CormorantGaramond-500-italic.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 400; src: url(assets/fonts/Jost-400.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 500; src: url(assets/fonts/Jost-500.ttf); }
+
+  /* Palette restreinte : crème papier, brun gousse affinée, ocre (repris du logo).
+     Le vert vient uniquement de la photo. */
+  :root {
+    --creme: #f2eadb;
+    --encre: #33261c;
+    --encre-douce: #5b4a3c;
+    --ocre: #a5652a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; background: var(--creme); }
+
+  .affiche {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: url(assets/papier.png);
+    color: var(--encre);
+    font-kerning: normal;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Grille : photo sur 668 px (1080 / φ), colonne de texte sur les 412 px restants.
+     La grappe de gousses tombe sur la ligne du tiers gauche (x ≈ 360). */
+  .photo {
+    position: absolute;
+    left: 0; top: 0;
+    width: 668px; height: 1350px;
+    background: url(assets/photo.jpg) no-repeat;
+    background-size: auto 1350px;
+    background-position: -115px 0;
+  }
+
+  .legende {
+    position: absolute;
+    left: 48px; bottom: 57px;
+    font: 400 14px/1 "Jost", sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(246, 239, 226, 0.82);
+  }
+  .legende em { font-style: normal; text-transform: none; letter-spacing: 0.04em; font-family: "Cormorant"; font-weight: 500; font-style: italic; font-size: 19px; }
+
+  .colonne {
+    position: absolute;
+    left: 668px; top: 0;
+    width: 412px; height: 1350px;
+    padding: 92px 34px 0 54px;
+  }
+
+  .surtitre {
+    font: 500 15px/1 "Jost", sans-serif;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+
+  h1 {
+    margin-top: 46px;
+    font: 500 78px/0.92 "Cormorant", serif;
+    letter-spacing: -0.018em;
+    color: var(--encre);
+  }
+  h1 em { font-style: italic; font-weight: 500; }
+
+  .filet {
+    width: 44px; height: 1.5px;
+    margin: 52px 0 34px;
+    background: var(--ocre);
+    opacity: 0.8;
+  }
+
+  .texte {
+    font: 400 23px/1.5 "Jost", sans-serif;
+    color: var(--encre-douce);
+    max-width: 296px;
+  }
+
+  .public {
+    margin-top: 26px;
+    font: 500 29px/1.2 "Cormorant", serif;
+    font-style: italic;
+    color: var(--ocre);
+  }
+
+  .signature {
+    position: absolute;
+    left: 54px; right: 34px; bottom: 60px;
+  }
+  .signature img {
+    display: block;
+    width: 232px;
+    margin-left: -10px;
+    mix-blend-mode: multiply;
+  }
+  .appel {
+    margin-top: 28px;
+    font: 500 14px/1 "Jost", sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--encre);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
+    text-decoration-color: rgba(51, 38, 28, 0.4);
+  }
+
+  /* Grain commun à la photo, au papier et à l'encre : rien n'est parfaitement lisse. */
+  .grain {
+    position: absolute; inset: 0;
+    background: url(assets/grain.png);
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="affiche">
+    <div class="photo">
+      <p class="legende"><em>Vanilla planifolia</em> &nbsp;·&nbsp; sur la liane</p>
+    </div>
+
+    <div class="colonne">
+      <p class="surtitre">Vanille de Madagascar</p>
+      <h1>Votre<br>vanille<br>commence<br><em>ici.</em></h1>
+      <div class="filet"></div>
+      <p class="texte">Neuf mois sur la liane,<br>puis de longs mois<br>d’affinage à la main.</p>
+      <p class="public">Du particulier<br>à l’importateur.</p>
+
+      <div class="signature">
+        <img src="assets/logo.png" alt="Madalight — Vanilla and spices">
+        <p class="appel">Commandez en message privé</p>
+      </div>
+    </div>
+
+    <div class="grain"></div>
+  </div>
+</body>
+</html>

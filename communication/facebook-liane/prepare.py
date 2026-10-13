@@ -154,7 +154,7 @@ def papier_sombre():
     )
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     lumiere = 1 - np.clip(np.sqrt(((xx - w) / (w * 0.9)) ** 2 + (yy / (h * 1.0)) ** 2), 0, 1)
-    v = nuages * 0.007 + fin * 0.008 + fibres * 0.005 + lumiere * 0.035
+    v = nuages * 0.013 + fin * 0.010 + fibres * 0.010 + lumiere * 0.04
     img = base[None, None, :] + v[..., None] * np.array([1.0, 0.85, 0.7], dtype=np.float32)
     Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)).save(ASSETS / "papier-sombre.png", optimize=True)
 

@@ -11,6 +11,7 @@ const ici = path.dirname(fileURLToPath(import.meta.url));
 const affiches = [
   ["affiche.html", "madalight-facebook-1080x1350"],
   ["affiche-v2.html", "madalight-facebook-v2-1080x1350"],
+  ["affiche-v3.html", "madalight-facebook-v3-1080x1350"],
 ];
 
 const browser = await chromium.launch();

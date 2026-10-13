@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Madalight — Votre vanille commence ici (v3)</title>
+<style>
+  @font-face { font-family: "Cormorant"; font-weight: 500; src: url(assets/fonts/CormorantGaramond-500.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 600; src: url(assets/fonts/CormorantGaramond-600.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 500; font-style: italic; src: url(assets/fonts/CormorantGaramond-500-italic.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 400; src: url(assets/fonts/Jost-400.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 500; src: url(assets/fonts/Jost-500.ttf); }
+
+  /* Version 3 : corrections du contrôle qualité de la v2.
+     - Appel à l'action sorti de l'étiquette, 32 px (≈ 12 px à l'écran d'un téléphone).
+     - Étiquette plus petite, papier plus chaud et plus sombre, débord ⅓ photo / ⅔ colonne.
+     - Ficelle en boucle nouée, irrégulière, qui pointe vers les gousses.
+     - Étapes en 30 px, graisse 600.
+     - Une seule marge extérieure : 52 px. */
+  :root {
+    --m: 52px;
+    --creme: #efe5d3;
+    --encre: #33261c;
+    --ocre: #c98d4e;
+    --filet: rgba(239, 229, 211, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; background: #2c1f17; }
+
+  .affiche {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: url(assets/papier-sombre.png);
+    color: var(--creme);
+    font-kerning: normal;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Grille : photo sur 668 px (1080 / φ), gousses sur le tiers gauche. */
+  .photo {
+    position: absolute;
+    left: 0; top: 0;
+    width: 668px; height: 1350px;
+    background: url(assets/photo-riche.jpg) no-repeat;
+    background-size: auto 1350px;
+    background-position: -115px 0;
+  }
+  .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 20, 14, 0) 58%, rgba(30, 20, 14, 0.5) 100%);
+  }
+
+  .legende {
+    position: absolute;
+    left: var(--m); top: var(--m);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font: 400 12px/1 "Jost", sans-serif;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(246, 239, 226, 0.78);
+    z-index: 1;
+  }
+
+  .colonne {
+    position: absolute;
+    left: 668px; top: 0;
+    width: 412px; height: 1350px;
+    padding: var(--m) var(--m) 0 var(--m);
+  }
+
+  .surtitre {
+    font: 500 15px/1 "Jost", sans-serif;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+
+  h1 {
+    margin-top: 44px;
+    font: 500 75px/0.92 "Cormorant", serif;
+    letter-spacing: -0.018em;
+    color: var(--creme);
+  }
+  h1 em { font-style: italic; color: var(--ocre); }
+
+  .etapes {
+    margin-top: 46px;
+    list-style: none;
+    border-bottom: 1px solid var(--filet);
+  }
+  .etapes li {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: baseline;
+    padding: 13px 0 12px;
+    border-top: 1px solid var(--filet);
+  }
+  .etapes b {
+    font: 500 14px/1 "Jost", sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--ocre);
+  }
+  .etapes span {
+    font: 600 30px/1.12 "Cormorant", serif;
+    color: rgba(239, 229, 211, 0.94);
+  }
+
+  /* Cible et action forment une seule phrase. */
+  .appel { margin-top: 38px; }
+  .appel .public {
+    display: block;
+    font: 500 30px/1.15 "Cormorant", serif;
+    font-style: italic;
+    color: var(--ocre);
+  }
+  .appel .action {
+    display: inline-block;
+    margin-top: 12px;
+    font: 500 32px/1.22 "Jost", sans-serif;
+    letter-spacing: -0.005em;
+    color: var(--creme);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+    text-decoration-color: rgba(201, 141, 78, 0.85);
+  }
+
+  .etiquette {
+    position: absolute;
+    left: 568px; top: 1076px;
+    width: 300px; height: 216px;
+    transform: rotate(-4deg);
+    transform-origin: 30% 50%;
+    filter:
+      drop-shadow(-2px 4px 3px rgba(14, 8, 4, 0.5))
+      drop-shadow(-10px 18px 22px rgba(14, 8, 4, 0.4));
+    z-index: 2;
+  }
+  .carte {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(200deg, rgba(255, 248, 235, 0.22), rgba(255, 248, 235, 0) 45%, rgba(60, 40, 20, 0.1)),
+      linear-gradient(rgba(214, 196, 162, 0.55), rgba(214, 196, 162, 0.55)),
+      url(assets/papier.png) -300px -500px;
+    background-blend-mode: normal, multiply, normal;
+    clip-path: polygon(40px 0, 100% 0, 100% 100%, 40px 100%, 0 calc(100% - 40px), 0 40px);
+    -webkit-mask: radial-gradient(circle 8px at 31px 50%, transparent 96%, #000 100%);
+            mask: radial-gradient(circle 8px at 31px 50%, transparent 96%, #000 100%);
+  }
+  .oeillet {
+    position: absolute;
+    left: 17px; top: 94px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, transparent 8px, rgba(40, 28, 12, 0.55) 8.6px, transparent 10px),
+      conic-gradient(from 210deg, #6b5230, #a8874f, #d2b67f, #9a7a45, #5e4729, #846640, #6b5230);
+    -webkit-mask: radial-gradient(circle, transparent 8px, #000 8.5px, #000 13.4px, transparent 14px);
+            mask: radial-gradient(circle, transparent 8px, #000 8.5px, #000 13.4px, transparent 14px);
+  }
+  .carte img {
+    position: absolute;
+    left: 80px; top: 22px;
+    width: 182px;
+    mix-blend-mode: multiply;
+  }
+
+  /* Ficelle : courbes irrégulières, torsion non régulière, bouts effilochés
+     qui remontent vers les gousses pour ramener l'œil dans l'image. */
+  .ficelle {
+    position: absolute; left: 0; top: 0;
+    width: 300px; height: 216px;
+    overflow: visible;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ficelle .fond { stroke: #a88a5c; stroke-width: 4; }
+  .ficelle .torsion { stroke: #6c5334; stroke-width: 4; stroke-dasharray: 1.3 3.1 1.7 2.6 1.1 3.6 1.5 2.9; opacity: 0.5; }
+  .ficelle .reflet { stroke: #e2cfa6; stroke-width: 1; stroke-dasharray: 1.2 3.4 1.6 2.7 1 3.8; stroke-dashoffset: 2; opacity: 0.5; }
+  .ficelle .fibre { stroke: #b0946a; stroke-width: 1; opacity: 0.8; }
+  .ficelle .bout { stroke-width: 3.2; }
+  .ficelle .noeud { fill: #977a4f; stroke: #6c5334; stroke-width: 0.8; }
+
+  .grain {
+    position: absolute; inset: 0;
+    background: url(assets/grain.png);
+    mix-blend-mode: soft-light;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="affiche">
+    <div class="photo">
+      <p class="legende">Vanilla planifolia · sur la liane</p>
+    </div>
+
+    <div class="colonne">
+      <p class="surtitre">Vanille de Madagascar</p>
+      <h1>Votre<br>vanille<br>commence<br><em>ici.</em></h1>
+
+      <ol class="etapes">
+        <li><b>01</b><span>Pollinisée à la main</span></li>
+        <li><b>02</b><span>Neuf mois sur la liane</span></li>
+        <li><b>03</b><span>Préparée à Madagascar</span></li>
+        <li><b>04</b><span>Affinée de longs mois</span></li>
+      </ol>
+
+      <p class="appel">
+        <span class="public">Du particulier<br>à l’importateur,</span>
+        <span class="action">commandez en<br>message privé.</span>
+      </p>
+    </div>
+
+    <div class="etiquette">
+      <!-- Boucle de ficelle, nouée au bout, qui pointe vers les gousses.
+           Le brin retour passe sous la carte jusqu'à l'œillet. -->
+      <svg class="ficelle" viewBox="0 0 300 216" aria-hidden="true">
+        <g>
+          <path class="fond" d="M 0 101 C -36 92, -96 60, -142 46 C -166 39, -184 44, -186 60 C -188 78, -166 98, -128 112 C -84 128, -36 134, 0 130 C 12 129, 24 118, 31 108"/>
+          <path class="torsion" d="M 0 101 C -36 92, -96 60, -142 46 C -166 39, -184 44, -186 60 C -188 78, -166 98, -128 112 C -84 128, -36 134, 0 130 C 12 129, 24 118, 31 108"/>
+          <path class="reflet" d="M 0 101 C -36 92, -96 60, -142 46 C -166 39, -184 44, -186 60 C -188 78, -166 98, -128 112 C -84 128, -36 134, 0 130 C 12 129, 24 118, 31 108"/>
+          <ellipse class="noeud" cx="-183" cy="56" rx="6.5" ry="5" transform="rotate(-30 -183 56)"/>
+          <path class="fond bout" d="M -186 52 C -192 44, -196 38, -204 34"/>
+          <path class="fond bout" d="M -181 50 C -182 40, -186 32, -188 24"/>
+          <path class="fibre" d="M -204 34 l -6 -1 M -204 34 l -4 -5 M -188 24 l -3 -5 M -188 24 l 2 -6"/>
+        </g>
+      </svg>
+      <div class="carte">
+        <img src="assets/logo.png" alt="Madalight — Vanilla and spices">
+      </div>
+      <div class="oeillet"></div>
+      <!-- Brin aller : de l'œillet au bord de la carte, par-dessus. -->
+      <svg class="ficelle" viewBox="0 0 300 216" aria-hidden="true">
+        <g>
+          <path class="fond" d="M 31 108 C 22 106, 10 103, 0 101 C -6 100, -10 99, -14 98"/>
+          <path class="torsion" d="M 31 108 C 22 106, 10 103, 0 101 C -6 100, -10 99, -14 98"/>
+          <path class="reflet" d="M 31 108 C 22 106, 10 103, 0 101 C -6 100, -10 99, -14 98"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grain"></div>
+  </div>
+</body>
+</html>

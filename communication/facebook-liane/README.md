@@ -1,8 +1,10 @@
 # Publication Facebook — « Votre vanille commence ici »
 
-| v1 — claire, minimale | v2 — sombre, en profondeur |
-|---|---|
-| ![v1](export/madalight-facebook-1080x1350.jpg) | ![v2](export/madalight-facebook-v2-1080x1350.jpg) |
+**Version à publier : v3** (`export/madalight-facebook-v3-1080x1350.jpg`).
+
+| v1 — claire, minimale | v2 — sombre, en profondeur | v3 — v2 corrigée après contrôle qualité |
+|---|---|---|
+| ![v1](export/madalight-facebook-1080x1350.jpg) | ![v2](export/madalight-facebook-v2-1080x1350.jpg) | ![v3](export/madalight-facebook-v3-1080x1350.jpg) |
 
 Format 4:5 (1080 × 1350 px), celui qui occupe le plus de place dans le fil
 Facebook sur mobile. Chaque version existe en JPEG (à publier) et en PNG
@@ -55,11 +57,25 @@ Facebook sur mobile. Chaque version existe en JPEG (à publier) et en PNG
   (pollinisation, maturation, préparation, affinage). Elles donnent du crédit
   auprès des acheteurs professionnels.
 
+### Corrections de la v3 (contrôle qualité de la v2)
+
+| Problème relevé sur la v2 | Correction dans la v3 |
+|---|---|
+| Appel à l'action illisible sur téléphone (12 px, soit 4,3 px à l'écran) | Sorti de l'étiquette et passé à 32 px (11,6 px à l'écran), souligné en ocre. Il forme une seule phrase avec la cible : « Du particulier à l'importateur, commandez en message privé. » |
+| L'étiquette est la zone la plus claire et concurrence le titre (luminosité 197) | Étiquette plus petite, papier plus chaud (luminosité 164), débord ⅓ sur la photo et ⅔ sur la colonne. |
+| Ficelle trop régulière, qui entraîne l'œil hors du cadre | Boucle nouée, torsion irrégulière, pointe tournée vers les gousses. |
+| Étapes à la limite de la lisibilité sur mobile | 30 px en graisse 600 (10,8 px à l'écran). |
+| Marges sans système | Une seule marge extérieure de 52 px (haut, droite, bas, légende). |
+| Texture du fond brun invisible, grain risqué à la compression | Texture renforcée et grain réduit. À vérifier lors d'une vraie publication. |
+
+Encore ouvert : une ligne d'offre (types de gousses, quantités, export) qui attend
+les informations du client, et la validation des quatre étapes.
+
 ## Régénérer
 
 ```bash
 python communication/facebook-liane/prepare.py   # photo, logo, textures
-node communication/facebook-liane/render.mjs     # exports PNG et JPEG des deux versions (Playwright)
+node communication/facebook-liane/render.mjs     # exports PNG et JPEG des trois versions (Playwright)
 ```
 
-Le texte et la mise en page se modifient dans `affiche.html` (v1) et `affiche-v2.html` (v2).
+Le texte et la mise en page se modifient dans `affiche.html` (v1), `affiche-v2.html` (v2) et `affiche-v3.html` (v3).

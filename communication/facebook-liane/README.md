@@ -10,20 +10,11 @@ Format 4:5 (1080 × 1350 px), celui qui occupe le plus de place dans le fil
 Facebook sur mobile. Chaque version existe en JPEG (à publier) et en PNG
 (sans perte, pour l'archive) dans `export/`.
 
-## Texte de la publication
+## Textes de la publication
 
-> Votre vanille commence ici.
->
-> Sur la liane, à Madagascar, chaque fleur est pollinisée à la main. La gousse
-> mûrit ensuite neuf mois avant la récolte, puis elle est affinée à la main
-> pendant de longs mois.
->
-> Particuliers, pâtissiers, chocolatiers, importateurs : écrivez-nous en
-> message privé pour recevoir nos prix.
->
-> Madalight — Vanilla and spices
->
-> #vanille #vanilledemadagascar #madagascar #patisserie #chocolaterie
+Post principal, version courte pour la publicité, version pour les
+professionnels, réponse automatique Messenger et conseils de diffusion :
+voir [`publication.md`](publication.md).
 
 ## Choix de design
 

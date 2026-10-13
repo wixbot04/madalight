@@ -7,38 +7,47 @@ Les passages entre crochets sont à confirmer ou à compléter avant publication
 
 ## 1. Post principal (publication sur la page)
 
-Sur mobile, Facebook coupe après environ 125 caractères (« Voir plus ») :
-la première phrase doit donner envie de lire la suite.
+Version 2 du texte, après relecture : deux fois plus courte, et l'appel à
+l'action tient dans les 125 premiers caractères, avant la coupure « Voir plus »
+de Facebook sur mobile.
 
 ```
-Ces gousses sont encore vertes. Dans quelques mois, elles seront noires, souples, et parfumeront votre cuisine.
+Ces gousses sont encore vertes. Dans quelques mois, elles parfumeront vos desserts. Commandez en message privé.
 
-Ici, à Madagascar, la vanille ne se presse pas.
-Chaque fleur ne s'ouvre qu'un seul matin. Ce jour-là, il faut la polliniser à la main, sinon elle ne donnera jamais de gousse. On appelle ça le « mariage ».
-Ensuite, la gousse reste neuf mois sur la liane. Puis viennent des semaines de préparation (échaudage, étuvage, séchage au soleil) et de longs mois d'affinage, jusqu'à ce que tout son parfum se développe.
+Dites-nous simplement la quantité et votre ville : nous vous répondons avec le prix et le délai de livraison.
 
-Le résultat : une gousse qu'on fend, qu'on gratte, et dont les petites graines noires parfument une crème, une pâte à gâteau ou un rhum arrangé. Rien à voir avec un arôme vanille du commerce.
+Pourquoi un tel parfum ? À Madagascar, la fleur de vanille ne s'ouvre qu'un seul matin et se pollinise à la main (ici, on appelle ça le « mariage »). La gousse mûrit ensuite neuf mois sur la liane, puis elle est préparée et affinée pendant de longs mois.
 
-Madalight vend sa vanille à tous :
-— aux particuliers, pour la cuisine et la pâtisserie maison
-— aux pâtissiers, chocolatiers, glaciers et restaurants
-— aux revendeurs et aux importateurs
+Particuliers, pâtissiers, restaurants, revendeurs, importateurs : de quelques gousses à plusieurs kilos [à confirmer].
 
-Commander est simple :
-1. Envoyez-nous un message privé
-2. Dites-nous la quantité souhaitée et votre ville ou votre pays
-3. Nous vous répondons avec le prix et le délai de livraison
-
-Quelques gousses ou plusieurs kilos [à confirmer] : écrivez-nous, nous répondons à chaque message.
+→ Écrivez-nous en message privé
+→ Professionnels : fiches produits et conditions sur [adresse du site]
 
 Madalight — Vanilla and spices
 #vanille #vanilledemadagascar #madagascar #patisserie
 ```
 
-Si vous pouvez afficher un prix, ajoutez avant « Commander est simple » :
-`À partir de [prix] le [paquet de X gousses / kilo], livraison [zones].`
-Un prix d'appel visible rassure et augmente les demandes : beaucoup de gens
-n'écrivent pas quand le prix n'est donné qu'en message privé.
+- Pas de site, ou un site sans contenu utile ? Supprimez la ligne « Professionnels ».
+- Si vous pouvez afficher un prix, ajoutez après la deuxième phrase :
+  `À partir de [prix] le [paquet de X gousses / kilo], livraison [zones].`
+- Si c'est vrai, et seulement si c'est vrai, une ligne d'actualité donne une
+  raison d'agir maintenant : `La nouvelle récolte est disponible.`
+
+### Faut-il un lien vers le site ?
+
+Un seul appel principal par post. Deux appels de même poids se concurrencent
+et font baisser les commandes. L'affiche dit déjà « commandez en message
+privé » : le site n'est donc qu'un appel secondaire.
+
+| Type de site | Rôle dans le post |
+|---|---|
+| Aucun site | Pas de lien. Message privé uniquement, ou WhatsApp en second canal. |
+| Site vitrine (produits, savoir-faire, contact) | Lien secondaire pour rassurer, surtout les professionnels et les acheteurs étrangers qui vérifient avant d'écrire. |
+| Boutique en ligne (prix, panier, paiement) | Le site devient l'appel principal pour les particuliers : publicité avec l'objectif « Ventes » et le bouton « Acheter ». L'affiche doit alors afficher l'adresse du site à la place de « commandez en message privé ». |
+
+Les liens sortants réduisent souvent la portée naturelle d'un post. Mettez donc
+l'adresse en texte dans le post, ou dans le premier commentaire, mais ne
+publiez pas d'aperçu de lien à la place de l'image.
 
 ## 2. Version courte (publicité sponsorisée)
 

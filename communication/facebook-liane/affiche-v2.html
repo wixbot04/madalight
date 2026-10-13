@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Madalight — Votre vanille commence ici (v2)</title>
+<style>
+  @font-face { font-family: "Cormorant"; font-weight: 500; src: url(assets/fonts/CormorantGaramond-500.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 600; src: url(assets/fonts/CormorantGaramond-600.ttf); }
+  @font-face { font-family: "Cormorant"; font-weight: 500; font-style: italic; src: url(assets/fonts/CormorantGaramond-500-italic.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 400; src: url(assets/fonts/Jost-400.ttf); }
+  @font-face { font-family: "Jost"; font-weight: 500; src: url(assets/fonts/Jost-500.ttf); }
+
+  /* Version 2 : plus de contraste et de profondeur.
+     Fond brun gousse affinée, texte crème, ocre du logo. Le vert reste dans la photo. */
+  :root {
+    --creme: #efe5d3;
+    --encre: #33261c;
+    --ocre: #c98d4e;
+    --filet: rgba(239, 229, 211, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; background: #2c1f17; }
+
+  .affiche {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: url(assets/papier-sombre.png);
+    color: var(--creme);
+    font-kerning: normal;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Même grille que la v1 : photo sur 668 px (1080 / φ), gousses sur le tiers gauche. */
+  .photo {
+    position: absolute;
+    left: 0; top: 0;
+    width: 668px; height: 1350px;
+    background: url(assets/photo-riche.jpg) no-repeat;
+    background-size: auto 1350px;
+    background-position: -115px 0;
+  }
+  /* Le sol s'assombrit en bas pour asseoir l'étiquette. */
+  .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 20, 14, 0) 58%, rgba(30, 20, 14, 0.5) 100%);
+  }
+
+  .legende {
+    position: absolute;
+    left: 34px; top: 66px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font: 400 12px/1 "Jost", sans-serif;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(246, 239, 226, 0.78);
+    z-index: 1;
+  }
+
+  .colonne {
+    position: absolute;
+    left: 668px; top: 0;
+    width: 412px; height: 1350px;
+    padding: 92px 34px 0 54px;
+  }
+
+  .surtitre {
+    font: 500 15px/1 "Jost", sans-serif;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+
+  h1 {
+    margin-top: 46px;
+    font: 500 78px/0.92 "Cormorant", serif;
+    letter-spacing: -0.018em;
+    color: var(--creme);
+  }
+  h1 em { font-style: italic; color: var(--ocre); }
+
+  /* Les étapes, comme sur une fiche de dégustation. */
+  .etapes {
+    margin-top: 54px;
+    list-style: none;
+    border-bottom: 1px solid var(--filet);
+  }
+  .etapes li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    align-items: baseline;
+    padding: 14px 0 13px;
+    border-top: 1px solid var(--filet);
+  }
+  .etapes b {
+    font: 500 13px/1 "Jost", sans-serif;
+    letter-spacing: 0.12em;
+    color: var(--ocre);
+  }
+  .etapes span {
+    font: 500 27px/1.15 "Cormorant", serif;
+    color: rgba(239, 229, 211, 0.92);
+  }
+
+  .public {
+    margin-top: 36px;
+    font: 500 29px/1.2 "Cormorant", serif;
+    font-style: italic;
+    color: var(--ocre);
+  }
+
+  /* L'étiquette : posée à cheval sur la photo et la colonne, éclairée du haut à droite.
+     drop-shadow suit la découpe et le trou de l'œillet. */
+  .etiquette {
+    position: absolute;
+    left: 478px; top: 1004px;
+    width: 352px; height: 262px;
+    transform: rotate(-4deg);
+    transform-origin: 30% 50%;
+    filter:
+      drop-shadow(-2px 4px 3px rgba(14, 8, 4, 0.5))
+      drop-shadow(-12px 20px 24px rgba(14, 8, 4, 0.42));
+    z-index: 2;
+  }
+  .carte {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(200deg, rgba(255, 250, 240, 0.35), rgba(255, 250, 240, 0) 45%, rgba(60, 40, 20, 0.08)),
+      url(assets/papier.png) -300px -500px;
+    clip-path: polygon(46px 0, 100% 0, 100% 100%, 46px 100%, 0 calc(100% - 46px), 0 46px);
+    -webkit-mask: radial-gradient(circle 9px at 36px 50%, transparent 96%, #000 100%);
+            mask: radial-gradient(circle 9px at 36px 50%, transparent 96%, #000 100%);
+  }
+  /* Œillet en laiton patiné : reflet doux, pas de miroir. */
+  .oeillet {
+    position: absolute;
+    left: 20px; top: 115px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, transparent 9px, rgba(40, 28, 12, 0.55) 9.6px, transparent 11px),
+      conic-gradient(from 210deg, #6b5230, #a8874f, #d2b67f, #9a7a45, #5e4729, #846640, #6b5230);
+    -webkit-mask: radial-gradient(circle, transparent 9px, #000 9.5px, #000 15.4px, transparent 16px);
+            mask: radial-gradient(circle, transparent 9px, #000 9.5px, #000 15.4px, transparent 16px);
+  }
+  /* Raphia : un brin passe devant dans l'œillet, l'autre ressort derrière la carte. */
+  .raphia {
+    position: absolute; left: 0; top: 0;
+    width: 352px; height: 262px;
+    overflow: visible;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .raphia .fond { stroke: #ad8e60; stroke-width: 4.2; }
+  .raphia .torsion { stroke: #6f5636; stroke-width: 4.2; stroke-dasharray: 1.4 3.4; opacity: 0.55; }
+  .raphia .reflet { stroke: #e6d3ab; stroke-width: 1.1; stroke-dasharray: 1.4 3.4; stroke-dashoffset: 2.2; opacity: 0.55; }
+  .carte img {
+    position: absolute;
+    left: 92px; top: 18px;
+    width: 196px;
+    mix-blend-mode: multiply;
+  }
+  .appel {
+    position: absolute;
+    left: 66px; right: 14px; bottom: 26px;
+    text-align: center;
+    font: 500 12px/1 "Jost", sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--encre);
+  }
+
+  .grain {
+    position: absolute; inset: 0;
+    background: url(assets/grain.png);
+    mix-blend-mode: soft-light;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="affiche">
+    <div class="photo">
+      <p class="legende">Vanilla planifolia · sur la liane</p>
+    </div>
+
+    <div class="colonne">
+      <p class="surtitre">Vanille de Madagascar</p>
+      <h1>Votre<br>vanille<br>commence<br><em>ici.</em></h1>
+
+      <ol class="etapes">
+        <li><b>01</b><span>Pollinisée à la main</span></li>
+        <li><b>02</b><span>Neuf mois sur la liane</span></li>
+        <li><b>03</b><span>Préparée à Madagascar</span></li>
+        <li><b>04</b><span>Affinée de longs mois</span></li>
+      </ol>
+
+      <p class="public">Du particulier<br>à l’importateur.</p>
+    </div>
+
+    <div class="etiquette">
+      <svg class="raphia" viewBox="0 0 352 262" aria-hidden="true">
+        <g><path class="fond" d="M 36 131 C 18 150, 0 168, -34 196 S -150 320, -236 410"/>
+           <path class="torsion" d="M 36 131 C 18 150, 0 168, -34 196 S -150 320, -236 410"/>
+           <path class="reflet" d="M 36 131 C 18 150, 0 168, -34 196 S -150 320, -236 410"/></g>
+      </svg>
+      <div class="carte">
+        <img src="assets/logo.png" alt="Madalight — Vanilla and spices">
+        <p class="appel">Commandez en message privé</p>
+      </div>
+      <div class="oeillet"></div>
+      <svg class="raphia" viewBox="0 0 352 262" aria-hidden="true">
+        <g><path class="fond" d="M -270 352 C -170 300, -70 170, 34 132"/>
+           <path class="torsion" d="M -270 352 C -170 300, -70 170, 34 132"/>
+           <path class="reflet" d="M -270 352 C -170 300, -70 170, 34 132"/></g>
+      </svg>
+    </div>
+
+    <div class="grain"></div>
+  </div>
+</body>
+</html>

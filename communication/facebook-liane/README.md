@@ -1,12 +1,12 @@
 # Publication Facebook — « Votre vanille commence ici »
 
-![Aperçu](export/madalight-facebook-1080x1350.jpg)
+| v1 — claire, minimale | v2 — sombre, en profondeur |
+|---|---|
+| ![v1](export/madalight-facebook-1080x1350.jpg) | ![v2](export/madalight-facebook-v2-1080x1350.jpg) |
 
 Format 4:5 (1080 × 1350 px), celui qui occupe le plus de place dans le fil
-Facebook sur mobile.
-
-- `export/madalight-facebook-1080x1350.jpg` : fichier à publier.
-- `export/madalight-facebook-1080x1350.png` : version sans perte, pour l'archive.
+Facebook sur mobile. Chaque version existe en JPEG (à publier) et en PNG
+(sans perte, pour l'archive) dans `export/`.
 
 ## Texte de la publication
 
@@ -43,11 +43,23 @@ Facebook sur mobile.
 - **Logo** : détouré sur fond transparent, sans le filigrane « ✦ » du
   fichier d'origine.
 
+### Ce que la v2 ajoute
+
+- **Contraste** : colonne brun gousse affinée, texte crème, photo plus dense
+  (ombres profondes sans noir pur, gousses légèrement éclaircies).
+- **Profondeur** : le logo est imprimé sur une étiquette en papier à œillet de
+  laiton, nouée de raphia comme une botte de vanille. Elle est posée à cheval
+  sur la photo et la colonne, ce qui casse la grille et relie les deux moitiés.
+  Son ombre tombe en bas à gauche, à l'opposé de la lumière.
+- **Contenu** : quatre étapes numérotées, comme sur une fiche de dégustation
+  (pollinisation, maturation, préparation, affinage). Elles donnent du crédit
+  auprès des acheteurs professionnels.
+
 ## Régénérer
 
 ```bash
 python communication/facebook-liane/prepare.py   # photo, logo, textures
-node communication/facebook-liane/render.mjs     # exports PNG et JPEG (Playwright)
+node communication/facebook-liane/render.mjs     # exports PNG et JPEG des deux versions (Playwright)
 ```
 
-Le texte et la mise en page se modifient dans `affiche.html`.
+Le texte et la mise en page se modifient dans `affiche.html` (v1) et `affiche-v2.html` (v2).

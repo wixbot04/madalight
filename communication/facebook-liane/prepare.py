@@ -6,7 +6,9 @@ Produit dans assets/ :
 - photo.jpg   photo de la liane étalonnée (tons chauds et terreux, noirs
               relevés, flou progressif autour des gousses, léger grain) ;
 - logo.png    logo détouré sur fond transparent, sans le filigrane ;
+- photo-riche.jpg  même photo, étalonnage plus dense pour la v2 ;
 - papier.png  texture de papier crème (fibres et grain) ;
+- papier-sombre.png  fond brun de la v2 ;
 - grain.png   grain neutre posé sur toute l'affiche, texte compris.
 """
 
@@ -31,7 +33,9 @@ def flou(img, rayon):
     ) / 255
 
 
-def photo():
+def photo(nom="photo.jpg", contraste=0.16, noir=0.04, saturation=0.86, vignette=0.22, eclat=0.0):
+    """Étalonne la photo. La version « riche » (v2) a des ombres plus denses,
+    un vignettage plus marqué et un léger éclaircissement des gousses."""
     img = np.asarray(Image.open(SOURCES / "photo-liane.jpg").convert("RGB"), dtype=np.float32) / 255
     h, w, _ = img.shape
 
@@ -46,12 +50,12 @@ def photo():
 
     # Étalonnage : verts ramenés vers la sauge, terre plus chaude, désaturation légère.
     lum = img @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
-    img = lum[..., None] + (img - lum[..., None]) * 0.86
+    img = lum[..., None] + (img - lum[..., None]) * saturation
     img *= np.array([1.035, 1.0, 0.93], dtype=np.float32)
     # Courbe douce : ombres relevées (pas de noir pur), hautes lumières retenues.
     img = np.clip(img, 0, 1)
-    img = img + 0.16 * img * (1 - img) * (img - 0.4) * 4
-    img = 0.04 + img * (0.96 - 0.04)
+    img = img + contraste * img * (1 - img) * (img - 0.4) * 4
+    img = noir + img * (0.96 - noir)
     # Ombres teintées brun vanille, hautes lumières crème.
     lum = (img @ np.array([0.299, 0.587, 0.114], dtype=np.float32))[..., None]
     img = img + (1 - lum) * np.array([0.018, 0.008, -0.012], dtype=np.float32) * 1.4
@@ -62,14 +66,16 @@ def photo():
     img = img + (lumiere ** 1.6)[..., None] * np.array([0.07, 0.05, 0.02], dtype=np.float32)
     # Vignettage discret sur les bords gauche et bas.
     v = np.clip(np.sqrt(((xx - w * 0.55) / (w * 0.75)) ** 2 + ((yy - h * 0.42) / (h * 0.72)) ** 2) - 0.55, 0, 1)
-    img = img * (1 - 0.22 * v[..., None])
+    img = img * (1 - vignette * v[..., None])
+    # Éclat sur la grappe : l'œil va d'abord aux gousses.
+    img = img * (1 + eclat * (1 - t))
 
     # Grain argentique fin, plus visible dans les tons moyens.
     grain = rng.normal(0, 1, (h, w)).astype(np.float32)
     grain = (grain + flou(np.clip(grain * 0.25 + 0.5, 0, 1), 0.6) * 2 - 1) * 0.5
     img = img + grain[..., None] * 0.022 * (1 - np.abs(lum - 0.5) * 1.2)
 
-    Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)).save(ASSETS / "photo.jpg", quality=94)
+    Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)).save(ASSETS / nom, quality=94)
 
 
 def logo():
@@ -136,6 +142,23 @@ def papier():
     Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)).save(ASSETS / "papier.png", optimize=True)
 
 
+def papier_sombre():
+    """Fond brun gousse affinée (v2) : fibres et nuances, éclairé en haut à droite."""
+    h, w = HAUTEUR, LARGEUR
+    base = np.array([44, 31, 23], dtype=np.float32) / 255
+    nuages = bruit_doux(h, w, 160) * 0.6 + bruit_doux(h, w, 50) * 0.4
+    fin = rng.normal(0, 1, (h, w)).astype(np.float32)
+    fibres = np.asarray(
+        Image.fromarray(rng.normal(0, 1, (h, w // 16)).astype(np.float32), "F").resize((w, h), Image.BICUBIC),
+        dtype=np.float32,
+    )
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    lumiere = 1 - np.clip(np.sqrt(((xx - w) / (w * 0.9)) ** 2 + (yy / (h * 1.0)) ** 2), 0, 1)
+    v = nuages * 0.007 + fin * 0.008 + fibres * 0.005 + lumiere * 0.035
+    img = base[None, None, :] + v[..., None] * np.array([1.0, 0.85, 0.7], dtype=np.float32)
+    Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)).save(ASSETS / "papier-sombre.png", optimize=True)
+
+
 def grain():
     h, w = HAUTEUR, LARGEUR
     g = rng.normal(0, 1, (h, w)).astype(np.float32) * 0.75 + bruit_doux(h, w, 2) * 0.25
@@ -146,7 +169,9 @@ def grain():
 if __name__ == "__main__":
     ASSETS.mkdir(exist_ok=True)
     photo()
+    photo("photo-riche.jpg", contraste=0.30, noir=0.022, saturation=0.92, vignette=0.42, eclat=0.06)
     logo()
     papier()
+    papier_sombre()
     grain()
     print("Images prêtes dans", ASSETS)
